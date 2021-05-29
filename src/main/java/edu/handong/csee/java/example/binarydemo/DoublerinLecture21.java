@@ -1,29 +1,28 @@
 package edu.handong.csee.java.example.binarydemo;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class DoublerinLecture21 {
+public class DoublerinLecture21{
 	
 	ArrayList<Integer> numbersFromBinaryFile = new ArrayList<Integer>();
-
-	public static void main(String[] args) {
-		DoublerinLecture21 demonstraotor = new DoublerinLecture21();
-		demonstraotor.run();
-
+	
+	public static void main(String [] args) {
+		DoublerinLecture21 demonstrator = new DoublerinLecture21();
+		demonstrator.run();
 	}
-
+	
 	private void run() {
-		String biranyFileName = "out.dat";
+		String binaryFileName = "numbers.dat";
 		try {
-			ObjectInputStream stream = new ObjectInputStream(new FileInputStream(biranyFileName));
+			ObjectInputStream stream = new ObjectInputStream(new FileInputStream(binaryFileName));
 			
-			int anInteger = stream.readInt();;
+			int anInteger = stream.readInt();
 			while(anInteger >=0) {
 				numbersFromBinaryFile.add(anInteger);
 				anInteger = stream.readInt();
@@ -32,35 +31,28 @@ public class DoublerinLecture21 {
 			
 			ArrayList<Integer> doubledNumbers = doubleIntNumbers();
 			
-			// to save doubledNumbers into a file name, doubledOut.dat
-			String finalOutBinaryFile = "doubledOut.dat";
-			
+			String finalOutBinaryFile ="numbers_output_ArrayList.dat";
 			ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(finalOutBinaryFile));
 			
 			for(int currentDoubledInt:doubledNumbers) {
 				outStream.writeInt(currentDoubledInt);
 			}
-			
 			outStream.close();
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		}
+		catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-	}
-
-	private ArrayList<Integer> doubleIntNumbers() {
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+	} 
+	
+	private ArrayList<Integer> doubleIntNumbers(){
 		ArrayList<Integer> doubledNumbers = new ArrayList<Integer>();
 		
-		for(Integer currentInt:numbersFromBinaryFile) {
+		for(Integer currentInt: numbersFromBinaryFile) {
 			doubledNumbers.add(currentInt*2);
 		}
-		
 		return doubledNumbers;
 	}
-
 }

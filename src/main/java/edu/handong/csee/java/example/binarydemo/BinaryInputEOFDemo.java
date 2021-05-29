@@ -25,6 +25,7 @@ public class BinaryInputEOFDemo {
 				int anInteger = inputStream.readInt();
 				System.out.println(anInteger);
 			}
+			
 		} catch(FileNotFoundException e) {
 			System.out.println("Problem opening the file " + fileName);
 		} catch (EOFException e) {
@@ -32,5 +33,6 @@ public class BinaryInputEOFDemo {
 		} catch (IOException e) {
 			System.out.println("Problem reading the file " + fileName);
 		}
+		
 	}
 }
